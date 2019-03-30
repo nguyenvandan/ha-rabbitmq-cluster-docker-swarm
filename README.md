@@ -1,0 +1,1 @@
+# ha-rabbitmq-cluster-docker-swarm
