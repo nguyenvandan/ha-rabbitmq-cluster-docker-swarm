@@ -6,9 +6,10 @@
 .terraform/
 
 # Sensitive Files
-/variables.tf
+variables.tf
 
 *.tfvars
 *.lock.info
 .idea
 *.iml
+*.pub

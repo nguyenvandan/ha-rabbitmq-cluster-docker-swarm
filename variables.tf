@@ -1,11 +1,11 @@
 # AWS Config
 
 variable "aws_access_key" {
-  default = "AKIA4VDR3OKXG22PZJN7"
+  default = "AKIA4VDR3OKXGECSEKEP"
 }
 
 variable "aws_secret_key" {
-  default = "pLseKjKA2fuPJJNt/hFL5fx1sujtsBq8NCIRZ74n"
+  default = "WJZ4hbgbmknxcRAsV6Grwge3G2P4OQG7OpeOkFwf"
 }
 
 variable "aws_region" {
