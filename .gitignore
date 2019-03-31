@@ -5,6 +5,9 @@
 # Module directory
 .terraform/
 
+# Sensitive Files
+/variables.tf
+
 *.tfvars
 *.lock.info
 .idea
