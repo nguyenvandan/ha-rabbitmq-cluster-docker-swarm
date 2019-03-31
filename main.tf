@@ -8,6 +8,18 @@ resource "aws_instance" "rabbitmq-instance" {
     "${aws_security_group.allow_outbound.name}"
   ]
 
+  provisioner "remote-exec" {
+    inline = [
+      "echo VanDan"
+    ]
+
+    connection {
+      type = "ssh"
+      user = "ubuntu"
+      private_key = "${file("C:\\Users\\vanguyen\\.ssh\\id_rsa")}"
+    }
+  }
+
   tags {
     Name = "rabbitmq-instance"
   }

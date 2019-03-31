@@ -13,3 +13,5 @@ variables.tf
 .idea
 *.iml
 *.pub
+*.log
+ssh
