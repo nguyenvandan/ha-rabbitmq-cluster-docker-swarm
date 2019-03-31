@@ -6,3 +6,7 @@ resource "aws_instance" "rabbitmq-instance" {
     Name = "rabbitmq-instance"
   }
 }
+
+resource "aws_eip" "rabbitmq-eip" {
+  instance = "${aws_instance.rabbitmq-instance.id}"
+}
