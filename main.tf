@@ -1,7 +1,7 @@
 resource "aws_instance" "rabbitmq-instance" {
   ami             = "${data.aws_ami.ubuntu.id}"
-  instance_type   = "t2.micro"
-  key_name = "${aws_key_pair.rabbitmq-key.key_name}"
+  instance_type   = "${var.instance_type}"
+  key_name        = "${var.key_pair}"
 
   security_groups = [
     "${aws_security_group.allow_ssh.name}",
@@ -16,12 +16,12 @@ resource "aws_instance" "rabbitmq-instance" {
     connection {
       type = "ssh"
       user = "ubuntu"
-      private_key = "${file("C:\\Users\\vanguyen\\.ssh\\id_rsa")}"
+      private_key = "${file(${var.key_pair_key})}"
     }
   }
 
   tags {
-    Name = "rabbitmq-instance"
+    Name = "${var.name}"
   }
 }
 
