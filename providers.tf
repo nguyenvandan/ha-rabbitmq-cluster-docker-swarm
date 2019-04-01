@@ -3,5 +3,5 @@ provider "aws" {
   secret_key = "${var.aws_secret_key}"
   region     = "${var.aws_region}"
 
-  version = "~> 2.4.0"
+  version = "~> 2.4"
 }

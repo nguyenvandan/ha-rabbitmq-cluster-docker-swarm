@@ -1,30 +1,17 @@
-resource "aws_instance" "rabbitmq-instance" {
-  ami             = "${data.aws_ami.ubuntu.id}"
-  instance_type   = "${var.instance_type}"
-  key_name        = "${var.key_pair}"
+resource "aws_key_pair" "my-rabbitmq-key" {
+  key_name   = "my_rabbitmq_key"
+  public_key = "${file("id_rsa.pub")}"
+}
 
+module "my-rabbitmq-server" {
+  source = "rabbitmq-server"
+
+  name            = "rabbitmq-instance"
+  key_pair        = "${aws_key_pair.my-rabbitmq-key.key_name}"
+  key_pair_key    = "~/.ssh/id_rsa"
   security_groups = [
     "${aws_security_group.allow_ssh.name}",
     "${aws_security_group.allow_outbound.name}"
   ]
-
-  provisioner "remote-exec" {
-    inline = [
-      "echo VanDan"
-    ]
-
-    connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = "${file(${var.key_pair_key})}"
-    }
-  }
-
-  tags {
-    Name = "${var.name}"
-  }
 }
 
-resource "aws_eip" "rabbitmq-eip" {
-  instance = "${aws_instance.rabbitmq-instance.id}"
-}
