@@ -5,7 +5,6 @@ terraform {
     key = "deployed.tfstate"
     dynamodb_table = "terraform-locking"
     region = "eu-west-1"
-    shared_credentials_file = "env\\secret.tfvars"
   }
 }
 
