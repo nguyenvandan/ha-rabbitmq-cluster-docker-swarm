@@ -1,3 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket = "vandan-terraform-tfstate"
+    workspace_key_prefix = "rabbitmq"
+    key = "deployed.tfstate"
+    dynamodb_table = "terraform-locking"
+    region = "eu-west-1"
+  }
+}
+
 resource "aws_key_pair" "my-rabbitmq-key" {
   key_name   = "my_rabbitmq_key"
   public_key = "${file("C:\\Users\\vanguyen\\.ssh\\id_rsa.pub")}"
