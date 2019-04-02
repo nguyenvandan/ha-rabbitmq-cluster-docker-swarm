@@ -1,0 +1,1 @@
+terraform apply -var-file="env\secret.tfvars" -var-file="env\remote.tfvars"
