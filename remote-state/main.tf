@@ -1,6 +1,11 @@
+# AWS Config
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+
+
 provider "aws" {
-  access_key = "AKIA4VDR3OKXEEWJEW42"
-  secret_key = "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"
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
   region = "eu-west-1"
 }
 
