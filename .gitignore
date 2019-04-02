@@ -6,7 +6,7 @@
 .terraform/
 
 # Sensitive Files
-secret_variables.tf
+env_secret.tfvars
 
 *.tfvars
 *.lock.info
