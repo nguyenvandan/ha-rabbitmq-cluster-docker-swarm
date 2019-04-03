@@ -1,13 +1,12 @@
+# AWS Config
 variable "aws_access_key" {}
-
 variable "aws_secret_key" {}
 
-variable "aws_region" {}
 
 provider "aws" {
   access_key = "${var.aws_access_key}"
   secret_key = "${var.aws_secret_key}"
-  region = "${var.aws_region}"
+  region = "eu-west-1"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
@@ -33,4 +32,3 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
     type = "S"
   }
 }
-
