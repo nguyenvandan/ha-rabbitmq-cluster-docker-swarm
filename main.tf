@@ -13,10 +13,10 @@ resource "aws_key_pair" "my-rabbitmq-key" {
   public_key = "${file("${var.public_key}")}"
 }
 
-module "my-rabbitmq-server" {
+module "rabbitmq-node1" {
   source = "rabbitmq-server"
 
-  name            = "rabbitmq-server"
+  name            = "rabbitmq-node1"
   key_pair        = "${aws_key_pair.my-rabbitmq-key.key_name}"
   key_pair_key    = "${var.private_key}"
   security_groups = [
@@ -24,4 +24,29 @@ module "my-rabbitmq-server" {
     "${aws_security_group.allow_outbound.name}"
   ]
 }
+
+module "rabbitmq-node2" {
+  source = "rabbitmq-server"
+
+  name            = "rabbitmq-node2"
+  key_pair        = "${aws_key_pair.my-rabbitmq-key.key_name}"
+  key_pair_key    = "${var.private_key}"
+  security_groups = [
+    "${aws_security_group.allow_ssh.name}",
+    "${aws_security_group.allow_outbound.name}"
+  ]
+}
+
+module "rabbitmq-node3" {
+  source = "rabbitmq-server"
+
+  name            = "rabbitmq-node3"
+  key_pair        = "${aws_key_pair.my-rabbitmq-key.key_name}"
+  key_pair_key    = "${var.private_key}"
+  security_groups = [
+    "${aws_security_group.allow_ssh.name}",
+    "${aws_security_group.allow_outbound.name}"
+  ]
+}
+
 
