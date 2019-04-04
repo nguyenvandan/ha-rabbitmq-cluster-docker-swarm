@@ -23,5 +23,5 @@ variable "security_groups" {
 
 variable "bootstrap_path" {
   description = "Script to install Docker Engine"
-  default = "rabbitmq-server\\install-docker.sh"
+  default = "rabbitmq-server/install-docker.sh"
 }
