@@ -5,17 +5,7 @@ resource "aws_instance" "rabbitmq-instance" {
 
   security_groups = ["${var.security_groups}"]
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo VanDan"
-    ]
-
-    connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = "${file("${var.key_pair_key}")}"
-    }
-  }
+  user_data = "${file("${var.bootstrap_path}")}"
 
   tags {
     Name = "${var.name}"
