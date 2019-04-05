@@ -16,6 +16,11 @@ terraform {
   }
 }
 
+# Template to install Docker
+data "template_file" "docker_installation" {
+  template = "${file("template/user_data.tpl")}"
+}
+
 resource "aws_key_pair" "my-rabbitmq-key" {
   key_name   = "my_rabbitmq_key"
   public_key = "${file("${var.public_key}")}"
@@ -31,6 +36,8 @@ module "rabbitmq-node1" {
     "${aws_security_group.allow_ssh.name}",
     "${aws_security_group.allow_outbound.name}"
   ]
+
+  instance_user_data = "${data.template_file.docker_installation.rendered}"
 }
 
 module "rabbitmq-node2" {
@@ -43,6 +50,8 @@ module "rabbitmq-node2" {
     "${aws_security_group.allow_ssh.name}",
     "${aws_security_group.allow_outbound.name}"
   ]
+
+  instance_user_data = "${data.template_file.docker_installation.rendered}"
 }
 
 module "rabbitmq-node3" {
@@ -55,6 +64,8 @@ module "rabbitmq-node3" {
     "${aws_security_group.allow_ssh.name}",
     "${aws_security_group.allow_outbound.name}"
   ]
+
+  instance_user_data = "${data.template_file.docker_installation.rendered}"
 }
 
 

@@ -20,3 +20,5 @@ variable "security_groups" {
   type = "list"
   default = []
 }
+
+variable "instance_user_data" {}
