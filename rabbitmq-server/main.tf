@@ -5,7 +5,7 @@ resource "aws_instance" "rabbitmq-instance" {
 
   security_groups = ["${var.security_groups}"]
 
-  user_data = "${file("${var.bootstrap_path}")}"
+  user_data = "${file("${path.module}/install-docker.sh")}"
 
   tags {
     Name = "${var.name}"
