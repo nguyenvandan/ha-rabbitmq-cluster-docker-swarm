@@ -10,6 +10,18 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
+resource "aws_security_group" "allow_docker_swarm" {
+  name        = "allow-docker-swarm"
+  description = "Allow Docker swarm inbound traffic"
+
+  ingress {
+    from_port   = 2375
+    to_port     = 2377
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_security_group" "allow_outbound" {
   name        = "allow-all-outbound"
   description = "Allow all outbound traffic"
